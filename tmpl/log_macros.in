@@ -1,0 +1,17 @@
+#ifndef _LOG_MACROS_@PREFIX@_H_
+#define _LOG_MACROS_@PREFIX@_H_
+
+#include <dgputil.h>
+
+#define TAG "@TAG@"
+
+#ifdef @DEBUG_OPT@
+#define @PREFIX@_dbg(_log_var, fmt, ...) @FUNC@(LOGLEVEL_DBG, TAG, fmt, ##__VA_ARGS__)
+#else
+#define @PREFIX@_dbg(_log_var, fmt, ...)
+#endif
+
+#define @PREFIX@_info(_log_var, fmt, ...) @FUNC@(LOGLEVEL_INFO, TAG, fmt, ##__VA_ARGS__)
+#define @PREFIX@_err(_log_var, fmt, ...) @FUNC@(LOGLEVEL_ERR, TAG, fmt, ##__VA_ARGS__)
+
+#endif
