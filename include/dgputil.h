@@ -20,11 +20,15 @@ typedef int(*log_cb)(int level, const char *tag, const char *restrict format,...
 
 #define array_size(a) (sizeof(a) / sizeof(a[0]))
 
-#define err_ptr(e) ((void *) e)
-#define ptr_err(p) ((int) p)
+/*
+ * Concept copied from the kernel,.. encode error value
+ * into a pointer
+ */
 
-// fixme!!
-#define is_err_ptr(p)	(((int) p) < 0xff)
+#define MAX_ERRNO 4056
+#define is_err_ptr(p)	((unsigned long)(void *)(p) >= (unsigned long)-MAX_ERRNO)
+#define err_ptr(e)	((void *) ((long) e))
+#define ptr_err(p)	((int)((long) p))
 
 #define bit(_b) (1 << _b)
 
